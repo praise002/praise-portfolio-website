@@ -4,3 +4,4 @@ package-lock.json
 tailwind.config.js
 assets/css/output.css
 note.txt
+.vscode
