@@ -5,33 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/output.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+  <link rel="stylesheet" href="/assets/css/toastify.min.css">
   <title>Portfolio website</title>
-  <!-- <script defer src="/assets/js/alpine.min.js"></script> -->
-  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.2/dist/cdn.min.js" defer></script>
+  <script async src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script defer src="/assets/js/cdn.min.js"></script>
+  <script defer src="/assets/js/main.js"></script>
+  <script src="/assets/js/toastify-js.js"></script>
 </head>
-<body class="bg-black text-customGray font-normal px-10">
+<body class="bg-black text-customGray font-normal px-5 sm:px-10">
   <div>
     <header>
-      <nav class="fixed top-0 left-0 right-0 z-50 bg-[#121212] backdrop-blur-sm" x-data="{ open: false }">
-        <ul class="flex flex-row justify-between px-10 py-5 sm:py-7">
-          <li class="mb-3 sm:mb-0 font-bold text-customYellow text-xl"><a href="#introduction">PI</a></li>
+      <nav class="fixed top-0 left-0 right-0 z-50 bg-[#121212] backdrop-blur-sm"
+        x-data="{ open: false, showSvgPi: true }">
+        <ul class="flex flex-row justify-between p-5 sm:px-5 sm:py-7">
+          <li class="mb-3 sm:mb-0 font-bold text-customYellow text-xl" data-aos="zoom-in" x-show="showSvgPi"><a
+              href="#introduction">PI</a>
+          </li>
           <div class="hidden sm:flex sm:flex-row justify-between sm:space-x-3">
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#capabilities">Capabilities</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a class="hover:text-customYellow transition-colors duration-300" href="#projects">Projects</a></li>
+            <li><a class="hover:text-customYellow transition-colors" href="#about">About</a></li>
+            <li><a class="hover:text-customYellow transition-colors" href="#capabilities">Capabilities</a></li>
+            <li><a class="hover:text-customYellow transition-colors" href="#experience">Experience</a></li>
+            <li><a class="hover:text-customYellow transition-colors" href="#contact">Contact</a></li>
           </div>
-          <div class="sm:hidden flex items-center">
-            <button @click="open = !open" class="sm:hidden focus:outline-none transition-colors">
+          <div class="sm:hidden flex items-center" x-show="showSvgPi">
+            <button @click="open = !open; showSvgPi = false" class="sm:hidden focus:outline-none transition-colors">
               <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="27"
                 width="27" xmlns="http://www.w3.org/2000/svg">
                 <path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z">
@@ -40,24 +44,33 @@
             </button>
           </div>
         </ul>
-        <ul x-show="open" class="sm:hidden flex flex-col space-y-3 px-10 py-7">
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#capabilities">Capabilities</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#contact">Contact</a></li>
+        <ul x-show="open" class="sm:hidden flex flex-col space-y-3 px-10 py-7 -mt-10">
+          <li><a class="hover:text-customYellow transition-colors" href="#projects">Projects</a></li>
+          <li><a class="hover:text-customYellow transition-colors" href="#about">About</a></li>
+          <li><a class="hover:text-customYellow transition-colors" href="#capabilities">Capabilities</a></li>
+          <li><a class="hover:text-customYellow transition-colors" href="#experience">Experience</a></li>
+          <li><a class="hover:text-customYellow transition-colors" href="#contact">Contact</a></li>
+          <li>
+            <button @click="open = false; showSvgPi = true"
+              class="focus:outline-none hover:text-customYellow absolute right-0 top-0 mr-3 mt-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M18.36 6.64a1 1 0 0 0-1.41 0L12 11.59 7.05 6.64a1 1 0 0 0-1.41 1.41L10.59 13l-4.95 4.95a1 1 0 1 0 1.41 1.41L12 14.41l4.95 4.95a1 1 0 0 0 1.41-1.41L13.41 13l4.95-4.95a1 1 0 0 0 0-1.41z" />
+              </svg>
+            </button>
+          </li>
         </ul>
       </nav>
     </header>
     <main class="mt-28">
       <section id="introduction">
         <div class="grid md:grid-cols-2 md:gap-12 items-center">
-          <div>
+          <div data-aos="fade-down">
             <h1 class="uppercase text-5xl">hi, <span class="text-customYellow">i am</span></h1>
             <h1 class="text-customYellow uppercase text-5xl">Praise Idowu.</h1>
             <p class="mt-2">I'm a full stack developer specializing in building exceptional digital experiences.</p>
           </div>
-          <div class="shadow-lg mx-auto">
+          <div class="shadow-lg mx-auto" data-aos="fade-up">
             <img class="w-72 h-72 object-cover mt-2" src="/assets/images/avatar.png" alt="">
           </div>
         </div>
@@ -68,11 +81,11 @@
           <h2 class="uppercase font-bold text-2xl my-10">Featured Projects</h2>
         </header>
         <div class="grid grid-cols-1 md:grid-cols-2 md:gap-5 mb-5 items-center">
-          <div class="bg-darkGray relative py-20 px-10">
+          <div class="bg-darkGray relative py-20 px-10" data-aos="fade-right">
             <span class="font-medium bg-black rounded-full absolute mt-2 px-4 py-2 top-0 left-2 ">Devsearch</span>
             <img src="/assets/images/devsearch-admin-login.png" alt="">
           </div>
-          <div class="py-20 px-10 self-center">
+          <div class="py-20 px-10 self-center" data-aos="fade-left">
             <h2 class="font-medium mb-2">DevSearch</h2>
             <p>A developer networking platform where users can create profiles, showcase skills, and connect with
               other
@@ -87,17 +100,18 @@
             </div>
             <div class="uppercase text-customYellow">
               <!-- <span>Live Demo &#8599;</span> -->
-              <span><a href="http://" target="_blank" rel="noopener noreferrer" class="hover:text-customGray">See on Github <i
-                    class="fa-brands fa-github"></i></a></span>
+              <span><a href="https://github.com/praise002/Devsearch-django-mvt" target="_blank"
+                  rel="noopener noreferrer" class="hover:text-customGray transition-colors">See on
+                  Github <i class="fa-brands fa-github"></i></a></span>
             </div>
           </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 md:gap-5 mb-5 items-center">
-          <div class="bg-darkGray relative py-20 px-10">
+          <div class="bg-darkGray relative py-20 px-10" data-aos="fade-right">
             <span class="font-medium bg-black rounded-full absolute mt-2 px-4 py-2 top-0 left-2 ">Devsearch</span>
             <img src="/assets/images/devsearch-api.png" alt="">
           </div>
-          <div class="py-20 px-10 self-center">
+          <div class="py-20 px-10 self-center" data-aos="fade-left">
             <h2 class="font-medium mb-2">DevSearch</h2>
             <p>A developer networking platform where users can create profiles, showcase skills, and connect with
               other
@@ -113,17 +127,18 @@
             </div>
             <div class="uppercase text-customYellow">
               <!-- <span>Live Demo &#8599;</span> -->
-              <span><a href="http://" target="_blank" rel="noopener noreferrer">See on Github <i
+              <span><a href="https://github.com/praise002/Devsearch-drf" target="_blank" rel="noopener noreferrer"
+                  class="hover:text-customGray transition-colors">See on Github <i
                     class="fa-brands fa-github"></i></a></span>
             </div>
           </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 md:gap-5 mb-5 items-center">
-          <div class="bg-darkGray relative py-20 px-10">
+          <div class="bg-darkGray relative py-20 px-10" data-aos="fade-right">
             <span class="font-medium bg-black rounded-full absolute mt-2 px-4 py-2 top-0 left-2 ">FastEat</span>
             <img src="/assets/images/categories-list-fasteat.png" alt="">
           </div>
-          <div class="py-20 px-10 self-center">
+          <div class="py-20 px-10 self-center" data-aos="fade-left">
             <h2 class="font-medium mb-2">FastEat</h2>
             <p>A modern recipe discovery platform built using HTML5, Tailwind CSS and Javscript for a seamless user
               experience.</p>
@@ -135,17 +150,18 @@
             </div>
             <div class="uppercase text-customYellow">
               <!-- <span>Live Demo &#8599;</span> -->
-              <span><a href="http://" target="_blank" rel="noopener noreferrer">See on Github <i
+              <span><a href="https://github.com/praise002/FastEat-frontend" target="_blank" rel="noopener noreferrer"
+                  class="hover:text-customGray transition-colors">See on Github <i
                     class="fa-brands fa-github"></i></a></span>
             </div>
           </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 md:gap-5 items-center">
-          <div class="bg-darkGray relative py-20 px-10">
+          <div class="bg-darkGray relative py-20 px-10" data-aos="fade-right">
             <span class="font-medium bg-black rounded-full absolute mt-2 px-4 py-2 top-0 left-2 ">LearnLink</span>
             <img src="/assets/images/learnlink.jpg" alt="">
           </div>
-          <div class="py-20 px-10 self-center">
+          <div class="py-20 px-10 self-center" data-aos="fade-left">
             <h2 class="font-medium mb-2">LearnLink</h2>
             <p>LearnLink is a centralized repository of curated learning resources across various categories, designed
               to help both beginners and professionals in their tech journeys. Our goal is to make learning accessible,
@@ -159,7 +175,8 @@
             </div>
             <div class="uppercase text-customYellow">
               <!-- <span>Live Demo &#8599;</span> -->
-              <span><a href="http://" target="_blank" rel="noopener noreferrer">See on Github <i
+              <span><a href="https://github.com/SCA-OAU/LearnLink" target="_blank" rel="noopener noreferrer"
+                  class="hover:text-customGray transition-colors">See on Github <i
                     class="fa-brands fa-github"></i></a></span>
             </div>
           </div>
@@ -167,8 +184,8 @@
         <div class="border-b border-borderColor"></div>
       </section>
       <section id="about" class="grid grid-cols-1 md:grid-cols-2 md:gap-5 py-20">
-        <h2 class="font-medium uppercase text-3xl mb-5 md:mb-0">About Me</h2>
-        <div>
+        <h2 class="font-medium uppercase text-3xl mb-5 md:mb-0" data-aos="zoom-in">About Me</h2>
+        <div data-aos="fade-up">
           <p class="font-medium text-2xl mb-2">
             I am a full stack software engineer based in
             Nigeria.
@@ -184,9 +201,9 @@
       </section>
       <div class="border-b border-borderColor"></div>
       <section id="capabilities" class="pb-10">
-        <h2 class="font-medium uppercase text-3xl my-10">My Capabilities</h2>
+        <h2 class="font-medium uppercase text-3xl my-10" data-aos="fade-up">My Capabilities</h2>
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div class="p-6 bg-gray-900 space-y-4  rounded-lg">
+          <div class="p-6 bg-gray-900 space-y-4  rounded-lg" data-aos="fade-up">
             <div class="text-customYellow">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -202,7 +219,7 @@
               Creating responsive and interactive user interfaces with modern frameworks.
             </p>
           </div>
-          <div class="p-6 bg-gray-900 space-y-4  rounded-lg">
+          <div class="p-6 bg-gray-900 space-y-4 rounded-lg" data-aos="fade-down">
             <div class="text-customYellow">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -218,7 +235,7 @@
               Building robust server-side applications and APIs.
             </p>
           </div>
-          <div class="p-6 bg-gray-900 space-y-4  rounded-lg">
+          <div class="p-6 bg-gray-900 space-y-4 rounded-lg" data-aos="fade-left">
             <div class="text-customYellow">
               <svg class="w-12 h-12 text-customYellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg">
@@ -235,7 +252,7 @@
               applications.
             </p>
           </div>
-          <div class="p-6 bg-gray-900 space-y-4  rounded-lg">
+          <div class="p-6 bg-gray-900 space-y-4 rounded-lg" data-aos="fade-right">
             <div class="text-customYellow">
               <svg class="w-12 h-12 text-customYellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg">
@@ -254,9 +271,9 @@
       </section>
       <div class="border-b border-borderColor"></div>
       <section id="experience" class="py-10">
-        <h2 class="font-medium uppercase text-3xl my-10">My Experience</h2>
+        <h2 class="font-medium uppercase text-3xl my-10" data-aos="fade-up">My Experience</h2>
         <div class="space-y-8">
-          <div class="grid md:grid-cols-[200px_1fr] gap-8 p-6 rounded-lg bg-gray-900">
+          <div class="grid md:grid-cols-[200px_1fr] gap-8 p-6 rounded-lg bg-gray-900" data-aos="fade-right">
             <div class="font-medium text-customYellow">March 2024 - June 2024</div>
             <div class="space-y-4">
               <h3 class="text-xl font-bold">Teaching Assistant</h3>
@@ -268,7 +285,7 @@
                 to enhance learning outcomes.</p>
             </div>
           </div>
-          <div class="grid md:grid-cols-[200px_1fr] gap-8 p-6 rounded-lg bg-gray-900">
+          <div class="grid md:grid-cols-[200px_1fr] gap-8 p-6 rounded-lg bg-gray-900" data-aos="fade-left">
             <div class="font-medium text-customYellow">June 2024 - August 2024</div>
             <div class="space-y-4">
               <h3 class="text-xl font-bold">LLM Intern</h3>
@@ -284,42 +301,44 @@
     </main>
     <section id="contact" class="py-20 bg-black/50">
       <div class="container mx-auto">
-        <h2 class="uppercase text-3xl font-bold mb-12">Let's connect</h2>
+        <h2 class="uppercase text-3xl font-bold mb-12" data-aos="fade-up">Let's connect</h2>
         <div class="max-w-2xl mx-auto">
-          <form class="space-y-6" action="https://formspree.io/f/mknendol" method="post">
+          <form id="contact-form" class="space-y-6" data-aos="fade-in" action="https://formspree.io/f/mknendol"
+            method="post">
             <div class="grid md:grid-cols-2 gap-6">
-              <input
+              <input required
                 class="h-10 w-full rounded-md border px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-gray-900 border-gray-800"
                 placeholder="Name" name="Name" type="text">
-              <input
+              <input required
                 class="h-10 w-full rounded-md border px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-gray-900 border-gray-800"
                 placeholder="Email" name="Email" type="email">
             </div>
-            <input
+            <input required
               class="h-10 w-full rounded-md border px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-gray-900 border-gray-800"
               placeholder="Subject" type="subject">
-            <textarea
+            <textarea required
               class="w-full rounded-md border px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-gray-900 border-gray-800 min-h-[150px]"
               placeholder="Message" name="Message"></textarea>
 
-            <button
-              class="w-full inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 text-gray-800 h-10 px-4 py-2 bg-yellow-500 hover:bg-yellow-600"
+            <button id="submit-btn"
+              class="w-full inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 text-gray-800 h-10 px-4 py-2 bg-yellow-500 hover:bg-yellow-600"
               type="submit">Send Message</button>
-
+            <p id="my-form-status"></p>
           </form>
 
           <div class="flex justify-center gap-6 mt-5">
-            <a target="_blank" rel="noopener noreferrer" href="https://github.com/praise002" class="text-gray-400 hover:text-customYellow"><svg
-                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="lucide lucide-github w-6 h-6">
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/praise002"
+              class="text-gray-400 hover:text-customYellow"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github w-6 h-6">
                 <path
                   d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4">
                 </path>
                 <path d="M9 18c-4.51 2-5-2-7-2"></path>
               </svg></a>
 
-            <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/praise-ifeoluwa-idowu-back-end-developer-django/"
+            <a target="_blank" rel="noopener noreferrer"
+              href="https://www.linkedin.com/in/praise-ifeoluwa-idowu-back-end-developer-django/"
               class="text-gray-400 hover:text-customYellow"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                 height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin w-6 h-6">
@@ -339,4 +358,5 @@
     </section>
   </div>
 </body>
+
 </html>
