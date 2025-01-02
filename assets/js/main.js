@@ -1,5 +1,3 @@
-AOS.init();
-
 const form = document.getElementById("contact-form");
 
 async function handleSubmit(event) {
@@ -70,3 +68,21 @@ async function handleSubmit(event) {
 }
 
 form.addEventListener("submit", handleSubmit);
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            const animationClass = entry.target.getAttribute("data-animation");
+            entry.target.classList.add(animationClass);
+        } else {
+            const animationClass = entry.target.getAttribute("data-animation");
+            entry.target.classList.remove(animationClass);
+        }
+    });
+});
+
+const animateElements = document.querySelectorAll("[data-animation]");
+animateElements.forEach((element) => {
+    console.log(element);
+    observer.observe(element);
+});
