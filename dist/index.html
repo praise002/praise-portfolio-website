@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/index.7f2d6365.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="/index.8e581ff9.css">
+  <title>Portfolio website</title>
+  <script defer="" src="/index.dca084f9.js"></script>
+  <script defer="" src="/index.fc2f7771.js"></script>
+  <script defer="" src="/index.190208f3.js"></script>
+</head>
+<body class="bg-black text-customGray font-normal px-5 md:px-10">
+  <main class="mt-28">
+    <header>
+      <nav aria-label="Main Navigation" class="fixed top-0 left-0 right-0 z-50 bg-[#121212] backdrop-blur-md" x-data="{ open: false, showSvgPi: true }">
+        <div class="flex justify-between items-center p-5 md:px-5 md:py-7">
+          <a aria-label="Introduction" class="list-none font-bold text-customYellow text-xl" data-animation="motion-safe:animate-zoomin" x-show="showSvgPi" href="#introduction">PI</a>
+          <div class="list-none hidden md:flex md:flex-row justify-between md:space-x-3">
+            <li><a class="hover:text-customYellow transition-colors duration-300" href="#projects">Projects</a></li>
+            <li><a class="hover:text-customYellow transition-colors" href="#about">About</a></li>
+            <li><a class="hover:text-customYellow transition-colors" href="#capabilities">Capabilities</a></li>
+            <li><a class="hover:text-customYellow transition-colors" href="#experience">Experience</a></li>
+            <li><a class="hover:text-customYellow transition-colors" href="#contact">Contact</a></li>
+          </div>
+          <div class="md:hidden flex items-center" x-show="showSvgPi">
+            <button aria-label="Toggle Navigation" @click="open = !open; showSvgPi = false" class="md:hidden focus:outline-none transition-colors">
+              <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewbox="0 0 512 512" height="27" width="27" xmlns="http://www.w3.org/2000/svg">
+                <path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z">
+                </path>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <ul x-show="open" class="md:hidden flex flex-col space-y-3 px-10 py-7 -mt-10">
+          <li><a class="hover:text-customYellow transition-colors" href="#projects">Projects</a></li>
+          <li><a class="hover:text-customYellow transition-colors" href="#about">About</a></li>
+          <li><a class="hover:text-customYellow transition-colors" href="#capabilities">Capabilities</a></li>
+          <li><a class="hover:text-customYellow transition-colors" href="#experience">Experience</a></li>
+          <li><a class="hover:text-customYellow transition-colors" href="#contact">Contact</a></li>
+          <li>
+            <button @click="open = false; showSvgPi = true" class="focus:outline-none hover:text-customYellow absolute right-0 top-0 mr-3 mt-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewbox="0 0 24 24">
+                <path d="M18.36 6.64a1 1 0 0 0-1.41 0L12 11.59 7.05 6.64a1 1 0 0 0-1.41 1.41L10.59 13l-4.95 4.95a1 1 0 1 0 1.41 1.41L12 14.41l4.95 4.95a1 1 0 0 0 1.41-1.41L13.41 13l4.95-4.95a1 1 0 0 0 0-1.41z"></path>
+              </svg>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <section id="introduction">
+      <div class="grid md:grid-cols-2 md:gap-12 items-center">
+        <div data-animation="motion-safe:animate-fadeindown">
+          <h1 class="uppercase text-5xl">hi, <span class="text-customYellow">i am</span></h1>
+          <h1 class="text-customYellow uppercase text-5xl">Praise Idowu.</h1>
+          <p class="mt-2">I'm a full stack developer specializing in building exceptional digital experiences.</p>
+        </div>
+        <div class="shadow-lg mx-auto" data-animation="motion-safe:animate-fadeinup">
+          <img class="w-72 h-72 object-cover mt-2" src="/pink-cat.27b5c10f.jpg" alt="An anime with a pink cat">
+        </div>
+      </div>
+    </section>
+    <div class="border-b border-borderColor"></div>
+    <section id="projects">
+      <header>
+        <h2 class="uppercase font-bold text-2xl my-10">Featured Projects</h2>
+      </header>
+      <div class="grid grid-cols-1 md:grid-cols-2 md:gap-5 mb-5 items-center">
+        <div class="bg-darkGray relative py-20 px-10" data-animation="motion-safe:animate-fadeinleft">
+          <span class="font-medium bg-black rounded-full absolute mt-2 px-4 py-2 top-0 left-2 ">Devsearch</span>
+          <img src="/devsearch-admin-login.e0edfd55.png" alt="An image of Project 1">
+        </div>
+        <div class="py-20 md:px-10 self-center" data-animation="motion-safe:animate-fadeinright">
+          <h2 class="font-medium mb-2">DevSearch</h2>
+          <p>A developer networking platform where users can create profiles, showcase skills, and connect with
+            other
+            professionals. I built the backend, implementing Django MVT, PostgreSQL for database management, and
+            Docker
+            for containerization.</p>
+
+          <div id="technologies" class="my-4 lg:space-x-2">
+            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">Django</span>
+            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">PostgreSQL</span>
+            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">Docker</span>
+          </div>
+          <div class="uppercase text-customYellow">
+            <!-- <span>Live Demo &#8599;</span> -->
+            <span><a href="https://github.com/praise002/Devsearch-django-mvt" target="_blank" rel="noopener noreferrer" class="hover:text-customGray transition-colors">See on
+                Github <i class="fa-brands fa-github"></i></a></span>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 md:gap-5 mb-5 items-center">
+        <div class="bg-darkGray relative py-20 px-10" data-animation="motion-safe:animate-fadeinleft">
+          <span class="font-medium bg-black rounded-full absolute mt-2 px-4 py-2 top-0 left-2 ">Devsearch</span>
+          <img src="/devsearch-api.7fa0b7f8.png" alt="An image of project 2">
+        </div>
+        <div class="py-20 md:px-10 self-center" data-animation="motion-safe:animate-fadeinright">
+          <h2 class="font-medium mb-2">DevSearch</h2>
+          <p>A developer networking platform where users can create profiles, showcase skills, and connect with
+            other
+            professionals. I built the backend, implementing Django Rest Framework, PostgreSQL for database
+            management, and Docker
+            for containerization.</p>
+
+          <div id="technologies" class="my-4 lg:space-x-2">
+            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">Django Rest
+              Framework</span>
+            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">PostgreSQL</span>
+            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">Docker</span>
+          </div>
+          <div class="uppercase text-customYellow">
+            <!-- <span>Live Demo &#8599;</span> -->
+            <span><a href="https://github.com/praise002/Devsearch-drf" target="_blank" rel="noopener noreferrer" class="hover:text-customGray transition-colors">See on Github <i class="fa-brands fa-github"></i></a></span>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 md:gap-5 mb-5 items-center">
+        <div class="bg-darkGray relative py-20 px-10" data-animation="motion-safe:animate-fadeinleft">
+          <span class="font-medium bg-black rounded-full absolute mt-2 px-4 py-2 top-0 left-2 ">FastEat</span>
+          <img src="/categories-list-fasteat.a12ff373.png" alt="An image of project 3">
+        </div>
+        <div class="py-20 md:px-10 self-center" data-animation="motion-safe:animate-fadeinright">
+          <h2 class="font-medium mb-2">FastEat</h2>
+          <p>A modern recipe discovery platform built using HTML5, Tailwind CSS and Javscript for a seamless user
+            experience.</p>
+
+          <div id="technologies" class="my-4 lg:space-x-2">
+            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">Tailwind CSS</span>
+            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">JavaScript</span>
+            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">HTML5</span>
+          </div>
+          <div class="uppercase text-customYellow">
+            <!-- <span>Live Demo &#8599;</span> -->
+            <span><a href="https://github.com/praise002/FastEat-frontend" target="_blank" rel="noopener noreferrer" class="hover:text-customGray transition-colors">See on Github <i class="fa-brands fa-github"></i></a></span>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 md:gap-5 items-center">
+        <div class="bg-darkGray relative py-20 px-10" data-animation="motion-safe:animate-slideinleft">
+          <span class="font-medium bg-black rounded-full absolute mt-2 px-4 py-2 top-0 left-2 ">LearnLink</span>
+          <img src="/learnlink.5e282237.jpg" alt="An image of project 2">
+        </div>
+        <div class="py-20 md:px-10 self-center" data-animation="motion-safe:animate-slideinright">
+          <h2 class="font-medium mb-2">LearnLink</h2>
+          <p>LearnLink is a centralized repository of curated learning resources across various categories, designed
+            to help both beginners and professionals in their tech journeys. Our goal is to make learning accessible,
+            structured, and easy to navigate.
+            I and my teammates contributed into this project and made it open-source in the spirit of Hertoberfest
+            and Hacktoberfest.</p>
+
+          <div id="technologies" class="my-4 lg:space-x-2">
+            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">Markdown</span>
+            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">GitHub</span>
+          </div>
+          <div class="uppercase text-customYellow">
+            <!-- <span>Live Demo &#8599;</span> -->
+            <span><a href="https://github.com/SCA-OAU/LearnLink" target="_blank" rel="noopener noreferrer" class="hover:text-customGray transition-colors">See on Github <i class="fa-brands fa-github"></i></a></span>
+          </div>
+        </div>
+      </div>
+      <div class="border-b border-borderColor"></div>
+    </section>
+    <section id="about" class="grid grid-cols-1 md:grid-cols-2 md:gap-5 py-20">
+      <h2 class="font-medium uppercase text-3xl mb-5 md:mb-0" data-animation="motion-safe:animate-zoomIn">About Me</h2>
+      <div data-animation="motion-safe:animate-fadeinup">
+        <p class="font-medium text-2xl mb-2">
+          I am a full stack software engineer based in
+          Nigeria.
+        </p>
+        <p>
+          From building applications to exploring large multimodal models, I’ve always enjoyed solving problems
+          through innovative technology. I’ve been working as a Backend developer before venturing into full-stack
+          development while also engaging in technical writing. Before this, I transitioned from various skills,
+          including digital marketing, video animation, content writing, and story writing. Outside of work, you can
+          find me creating video content and exploring the world through travel videos.
+        </p>
+      </div>
+    </section>
+    <div class="border-b border-borderColor"></div>
+    <section id="capabilities" class="pb-10">
+      <h2 class="font-medium uppercase text-3xl my-10" data-animation="motion-safe:animate-fadeinup">My Capabilities</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="p-6 bg-gray-900 space-y-4 rounded-lg" data-animation="motion-safe:animate-fadeinup">
+          <div class="text-customYellow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-code w-8 h-8">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold">
+            Frontend Development
+          </h3>
+          <p class="text-gray-400">
+            Creating responsive and interactive user interfaces with modern frameworks.
+          </p>
+        </div>
+        <div class="p-6 bg-gray-900 space-y-4 rounded-lg" data-animation="motion-safe:animate-fadeindown">
+          <div class="text-customYellow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-terminal w-8 h-8">
+              <polyline points="4 17 10 11 4 5"></polyline>
+              <line x1="12" x2="20" y1="19" y2="19"></line>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold">
+            Backend Development
+          </h3>
+          <p class="text-gray-400">
+            Building robust server-side applications and APIs.
+          </p>
+        </div>
+        <div class="p-6 bg-gray-900 space-y-4 rounded-lg" data-animation="motion-safe:animate-fadeinleft">
+          <div class="text-customYellow">
+            <svg class="w-12 h-12 text-customYellow" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a10 10 0 00-3.516 19.422c.276.05.375-.12.375-.266 0-.132-.005-.482-.007-.946-1.53.334-1.852-.738-1.852-.738-.25-.635-.61-.804-.61-.804-.498-.34.038-.333.038-.333.55.038.84.566.84.566.49.84 1.285.598 1.6.458.05-.355.192-.598.35-.736-1.222-.14-2.506-.611-2.506-2.722 0-.602.215-1.095.566-1.48-.057-.14-.245-.704.054-1.466 0 0 .46-.148 1.5.566a5.23 5.23 0 011.366-.184c.464 0 .93.062 1.366.184 1.04-.714 1.5-.566 1.5-.566.3.762.112 1.326.054 1.466.352.385.566.878.566 1.48 0 2.118-1.288 2.58-2.516 2.718.198.172.374.51.374 1.028 0 .742-.007 1.34-.007 1.52 0 .148.1.318.378.266A10 10 0 0012 2z">
+              </path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold">
+            Large Language Models
+          </h3>
+          <p class="text-gray-400">
+            Expertise in Large Language Models, including training, fine-tuning, and deploying models for various
+            applications.
+          </p>
+        </div>
+        <div class="p-6 bg-gray-900 space-y-4 rounded-lg" data-animation="motion-safe:animate-fadeinright">
+          <div class="text-customYellow">
+            <svg class="w-12 h-12 text-customYellow" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20h9m-9 0a9 9 0 01-9-9 9 9 0 019-9 9 9 0 019 9 9 9 0 01-9 9zm0 0v-9"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold">
+            Technical Writing
+          </h3>
+          <p class="text-gray-400">
+            Proficient in creating clear, concise, and comprehensive technical documentation and tutorials.
+          </p>
+        </div>
+      </div>
+    </section>
+    <div class="border-b border-borderColor"></div>
+    <section id="experience" class="py-10">
+      <h2 class="font-medium uppercase text-3xl my-10" data-animation="motion-safe:animate-fadeinup">My Experience</h2>
+      <div class="space-y-8">
+        <div class="grid md:grid-cols-[200px_1fr] gap-8 p-6 rounded-lg bg-gray-900" data-animation="motion-safe:animate-fadeinright">
+          <div class="font-medium text-customYellow">March 2024 - June 2024</div>
+          <div class="space-y-4">
+            <h3 class="text-xl font-bold">Teaching Assistant</h3>
+            <p class="text-gray-400">Kibo School of Technology</p>
+            <p>Served as a Teaching Assistant for the Trykibo Python course, where I assisted students in
+              understanding
+              core Python concepts, provided guidance on coding assignments, and facilitated interactive coding
+              sessions
+              to enhance learning outcomes.</p>
+          </div>
+        </div>
+        <div class="grid md:grid-cols-[200px_1fr] gap-8 p-6 rounded-lg bg-gray-900" data-animation="motion-safe:animate-fadeinleft">
+          <div class="font-medium text-customYellow">June 2024 - August 2024</div>
+          <div class="space-y-4">
+            <h3 class="text-xl font-bold">LLM Intern</h3>
+            <p class="text-gray-400">SeqHub Analytics LLC</p>
+            <p>During my LLM internship, my team and I developed a Sickle Cell chatbot using LangChain and OpenAI. We
+              conducted extensive research by reading relevant papers and received valuable guidance and mentorship
+              throughout the project.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="border-b border-borderColor"></div>
+  </main>
+  <section id="contact" class="py-20 bg-black/50">
+    <div class="container mx-auto">
+      <h2 class="uppercase text-3xl font-bold mb-12" data-animation="motion-safe:animate-fadeinup">Let's connect</h2>
+      <div class="max-w-2xl mx-auto">
+        <form id="contact-form" class="space-y-6" action="https://formspree.io/f/mknendol" method="post">
+          <div class="grid md:grid-cols-2 gap-6">
+            <input required="" class="h-10 w-full rounded-md border px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-gray-900 border-gray-800" placeholder="Name" name="Name" type="text">
+            <input required="" class="h-10 w-full rounded-md border px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-gray-900 border-gray-800" placeholder="Email" name="Email" type="email">
+          </div>
+          <input required="" class="h-10 w-full rounded-md border px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-gray-900 border-gray-800" placeholder="Subject" name="Subject" type="subject">
+          <textarea required="" class="w-full rounded-md border px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-gray-900 border-gray-800 min-h-[150px]" placeholder="Message" name="Message"></textarea>
+
+          <button id="submit-btn" class="w-full inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 text-gray-800 h-10 px-4 py-2 bg-yellow-500 hover:bg-yellow-600" type="submit">Send Message</button>
+          <p id="my-form-status"></p>
+        </form>
+
+        <div class="flex justify-center gap-6 mt-5">
+          <a target="_blank" rel="noopener noreferrer" href="https://github.com/praise002" class="text-gray-400 hover:text-customYellow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github w-6 h-6">
+              <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4">
+              </path>
+              <path d="M9 18c-4.51 2-5-2-7-2"></path>
+            </svg></a>
+
+          <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/praise-ifeoluwa-idowu-back-end-developer-django/" class="text-gray-400 hover:text-customYellow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin w-6 h-6">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect width="4" height="12" x="2" y="9"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg></a>
+          <a target="_blank" rel="noopener noreferrer" href="https://x.com/PraiseID3?t=R9aSeyVxpWblkDs9QAIXZw&s=09" class="text-gray-400 hover:text-customYellow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-twitter-x w-6 h-6" viewbox="0 0 16 16">
+              <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"></path>
+            </svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+<script src="/pages.0155c232.js"></script></body>
+
+</html>
