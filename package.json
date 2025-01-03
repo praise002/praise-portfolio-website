@@ -7,7 +7,7 @@
   },
   "scripts": {
     "start": "parcel src/pages/index.html",
-    "build:css": "postcss assets/css/input.css -o assets/css/output.css",
+    "build:css": "postcss ./assets/css/input.css -o ./assets/css/output.css",
     "build": "parcel build src/pages/index.html"
   }
 }
