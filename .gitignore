@@ -3,3 +3,4 @@ node_modules/
 assets/css/output.css
 note.txt
 .vscode
+dist/
