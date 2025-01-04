@@ -6,7 +6,7 @@
   },
   "scripts": {
     "start": "parcel src/pages/index.html",
-    "build:css": "npx i ./assets/css/input.css -o ./assets/css/output.css",
+    "build:css": "npx tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --minify",
     "build": "npm run build:css && parcel build src/pages/index.html"
   }
 }
