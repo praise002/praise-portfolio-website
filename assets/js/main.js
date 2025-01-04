@@ -85,3 +85,21 @@ const animateElements = document.querySelectorAll("[data-animation]");
 animateElements.forEach((element) => {
     observer.observe(element);
 });
+
+const app = document.getElementById('typewriter');
+
+const typewriter = new Typewriter(app, {
+  loop: true,
+  delay: 75,
+});
+
+typewriter
+  .pauseFor(300)
+  .typeString("I'm a full stack developer specializing in building exceptional digital experiences.")
+  .pauseFor(1000)
+  .deleteChars(32)
+  .typeString("scalable web applications.")
+  .pauseFor(1000)
+  .deleteChars(26)
+  .typeString("innovative solutions using modern tech stacks.")
+  .start();

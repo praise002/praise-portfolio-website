@@ -16,6 +16,7 @@
   <script defer src="/assets/js/cdn.min.js"></script>
   <!-- <script defer src="/assets/js/toastify-js.js"></script> -->
   <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script defer src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
   <script defer src="/assets/js/main.js"></script>
 </head>
 <body class="bg-black text-customGray font-normal px-5 md:px-10">
@@ -66,7 +67,7 @@
         <div data-animation="motion-safe:animate-fadeindown">
           <h1 class="uppercase text-5xl">hi, <span class="text-customYellow">i am</span></h1>
           <h1 class="text-customYellow uppercase text-5xl">Praise Idowu.</h1>
-          <p class="mt-2">I'm a full stack developer specializing in building exceptional digital experiences.</p>
+          <p id="typewriter" class="mt-2"></p>
         </div>
         <div class="shadow-lg mx-auto" data-animation="motion-safe:animate-fadeinup">
           <img class="w-72 h-72 object-cover mt-2" src="/assets/images/pink-cat.jpg" alt="An anime with a pink cat">
@@ -146,8 +147,8 @@
             <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">JavaScript</span>
             <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">HTML5</span>
           </div>
-          <div class="uppercase text-customYellow">
-            <!-- <span>Live Demo &#8599;</span> -->
+          <div class="uppercase text-customYellow space-x-2">
+            <!-- <span><a class="hover:text-customGray transition-colors" href="https://">Live Demo &#8599;</a></span> -->
             <span><a href="https://github.com/praise002/FastEat-frontend" target="_blank" rel="noopener noreferrer"
                 class="hover:text-customGray transition-colors">See on Github <i
                   class="fa-brands fa-github"></i></a></span>
@@ -201,7 +202,7 @@
     <section id="capabilities" class="pb-10">
       <h2 class="font-medium uppercase text-3xl my-10" data-animation="motion-safe:animate-fadeinup">My Capabilities</h2>
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="p-6 bg-gray-900 space-y-4 rounded-lg" data-animation="motion-safe:animate-fadeinup">
+        <div class="p-6 bg-gray-900 space-y-4 rounded-lg" data-animation="motion-safe:animate-fadeinleft">
           <div class="text-customYellow">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -217,7 +218,7 @@
             Creating responsive and interactive user interfaces with modern frameworks.
           </p>
         </div>
-        <div class="p-6 bg-gray-900 space-y-4 rounded-lg" data-animation="motion-safe:animate-fadeindown">
+        <div class="p-6 bg-gray-900 space-y-4 rounded-lg" data-animation="motion-safe:animate-fadeinright">
           <div class="text-customYellow">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
