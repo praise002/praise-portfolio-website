@@ -83,6 +83,5 @@ const observer = new IntersectionObserver((entries) => {
 
 const animateElements = document.querySelectorAll("[data-animation]");
 animateElements.forEach((element) => {
-    console.log(element);
     observer.observe(element);
 });
