@@ -5,8 +5,6 @@ async function handleSubmit(event) {
     const status = document.getElementById("my-form-status");
     const submitButton = form.querySelector("#submit-btn");
     const data = new FormData(event.target);
-    console.log(data);
-    console.log(event.target.action);
 
     submitButton.disabled = true;
     submitButton.textContent = "Submitting...";
