@@ -93,11 +93,16 @@ const typewriter = new Typewriter(app, {
 
 typewriter
   .pauseFor(300)
-  .typeString("I'm a full stack developer specializing in building exceptional digital experiences.")
+  .typeString("I build scalable backend systems, automate infrastructure, and develop AI-powered solutions.")
   .pauseFor(1000)
-  .deleteChars(32)
-  .typeString("scalable web applications.")
+  .deleteChars(91) 
+  .typeString(" optimize cloud infrastructure, and streamline DevOps workflows.")
   .pauseFor(1000)
-  .deleteChars(26)
-  .typeString("innovative solutions using modern tech stacks.")
+  .deleteChars(63) 
+  .typeString(" architect robust APIs, and engineer intelligent AI systems.")
+  .pauseFor(1000)
+  .deleteChars(60) 
+  .typeString(" deploy containerized applications, and automate CI/CD pipelines.")
   .start();
+
+

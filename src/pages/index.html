@@ -18,14 +18,15 @@
   <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script defer src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
   <script defer src="/assets/js/main.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.11.0/axios.min.js" integrity="sha512-h9644v03pHqrIHThkvXhB2PJ8zf5E9IyVnrSfZg8Yj8k4RsO4zldcQc4Bi9iVLUCCsqNY0b4WXVV4UB+wbWENA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <!-- <script defer type="module" src="/assets/js/test.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.11.0/axios.min.js"
+    integrity="sha512-h9644v03pHqrIHThkvXhB2PJ8zf5E9IyVnrSfZg8Yj8k4RsO4zldcQc4Bi9iVLUCCsqNY0b4WXVV4UB+wbWENA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body class="bg-black text-customGray font-normal px-5 md:px-10">
   <main class="mt-28">
     <header>
       <nav aria-label="Main Navigation" class="fixed top-0 left-0 right-0 z-50 bg-[#121212] backdrop-blur-md"
-        x-data="{ open: false, showSvgPi: true }">
+        x-data="{ open: false, showSvgPi: true }" @click.outside="open = false; showSvgPi = true">
         <div class="flex justify-between items-center p-5 md:px-5 md:py-7">
           <a aria-label="Introduction" class="list-none font-bold text-customYellow text-xl"
             data-animation="motion-safe:animate-zoomin" x-show="showSvgPi" href="#introduction">PI</a>
@@ -48,11 +49,16 @@
           </div>
         </div>
         <ul x-show="open" class="md:hidden flex flex-col space-y-3 px-10 py-7 -mt-10">
-          <li><a class="hover:text-customYellow transition-colors" href="#projects">Projects</a></li>
-          <li><a class="hover:text-customYellow transition-colors" href="#about">About</a></li>
-          <li><a class="hover:text-customYellow transition-colors" href="#capabilities">Capabilities</a></li>
-          <li><a class="hover:text-customYellow transition-colors" href="#experience">Experience</a></li>
-          <li><a class="hover:text-customYellow transition-colors" href="#contact">Contact</a></li>
+          <li><a class="hover:text-customYellow transition-colors" href="#projects"
+              @click="open = false; showSvgPi = true">Projects</a></li>
+          <li><a class="hover:text-customYellow transition-colors" href="#about"
+              @click="open = false; showSvgPi = true">About</a></li>
+          <li><a class="hover:text-customYellow transition-colors" href="#capabilities"
+              @click="open = false; showSvgPi = true">Capabilities</a></li>
+          <li><a class="hover:text-customYellow transition-colors" href="#experience"
+              @click="open = false; showSvgPi = true">Experience</a></li>
+          <li><a class="hover:text-customYellow transition-colors" href="#contact"
+              @click="open = false; showSvgPi = true">Contact</a></li>
           <li>
             <button @click="open = false; showSvgPi = true"
               class="focus:outline-none hover:text-customYellow absolute right-0 top-0 mr-3 mt-3">
@@ -184,7 +190,9 @@
             <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">Redis</span>
           </div>
           <div class="uppercase text-customYellow">
-            <!-- <span>Live Demo &#8599;</span> -->
+            <span><a href="https://clothingstoredrf-production.up.railway.app/" target="_blank"
+                rel="noopener noreferrer">Live Demo &#8599;</a>
+            </span>
             <span><a href="https://github.com/praise002/clothing_store_drf" target="_blank" rel="noopener noreferrer"
                 class="hover:text-customGray transition-colors">See on Github <i
                   class="fa-brands fa-github"></i></a></span>
@@ -213,16 +221,13 @@
           <div class="uppercase text-customYellow">
             <span><a href="https://jff-foundation.vercel.app/" target="_blank" rel="noopener noreferrer">Live Demo
                 &#8599;</a></span>
-            <!-- <span><a href="https://github.com/praise002/clothing_store_drf" target="_blank" rel="noopener noreferrer"
-                class="hover:text-customGray transition-colors">See on Github <i
-                  class="fa-brands fa-github"></i></a></span> -->
           </div>
         </div>
 
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 md:gap-5 mb-5 items-center">
         <div class="bg-darkGray relative py-20 px-10">
-          <span class="font-medium bg-black rounded-full absolute mt-2 px-4 py-2 top-0 left-2 ">FastEat</span>
+          <span class="font-medium bg-black rounded-full absolute mt-2 px-4 py-2 top-0 left-2 ">Tech HIve</span>
           <img src="/assets/images/tech-hive.png" alt="An image of project 3">
         </div>
         <div class="py-20 md:px-10 self-center">
