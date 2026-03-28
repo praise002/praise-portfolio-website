@@ -3,464 +3,1219 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Idowu Praise - Backend & AI Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;600;700;800&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/output.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- <link rel="stylesheet" href="/assets/css/toastify.min.css"> -->
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-  <title>Portfolio website</title>
-  <script defer src="/assets/js/cdn.min.js"></script>
-  <!-- <script defer src="/assets/js/toastify-js.js"></script> -->
-  <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-  <script defer src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
-  <script defer src="/assets/js/main.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.11.0/axios.min.js"
-    integrity="sha512-h9644v03pHqrIHThkvXhB2PJ8zf5E9IyVnrSfZg8Yj8k4RsO4zldcQc4Bi9iVLUCCsqNY0b4WXVV4UB+wbWENA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <style>
+    :root {
+      --bg-primary: #0a0e27;
+      --bg-secondary: #141937;
+      --bg-card: #1a1f45;
+      --accent-primary: #00e5ff;
+      --accent-secondary: #7b2ff7;
+      --accent-tertiary: #ff006e;
+      --text-primary: #e8eaed;
+      --text-secondary: #a8b2d1;
+      --text-muted: #6b7694;
+      --border-color: rgba(0, 229, 255, 0.2);
+      --glow: rgba(0, 229, 255, 0.4);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Animated background grid */
+    .bg-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image:
+        linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      z-index: 0;
+      animation: gridMove 20s linear infinite;
+    }
+
+    @keyframes gridMove {
+      0% {
+        transform: translate(0, 0);
+      }
+
+      100% {
+        transform: translate(50px, 50px);
+      }
+    }
+
+    /* Gradient orbs */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.3;
+      z-index: 0;
+      animation: float 20s ease-in-out infinite;
+    }
+
+    .orb-1 {
+      width: 500px;
+      height: 500px;
+      background: var(--accent-primary);
+      top: -200px;
+      right: -200px;
+    }
+
+    .orb-2 {
+      width: 400px;
+      height: 400px;
+      background: var(--accent-secondary);
+      bottom: -150px;
+      left: -150px;
+      animation-delay: -5s;
+    }
+
+    .orb-3 {
+      width: 350px;
+      height: 350px;
+      background: var(--accent-tertiary);
+      top: 50%;
+      left: 50%;
+      animation-delay: -10s;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+
+      33% {
+        transform: translate(30px, -30px) rotate(120deg);
+      }
+
+      66% {
+        transform: translate(-20px, 20px) rotate(240deg);
+      }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    header {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border-color);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 14, 39, 0.8);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+      text-decoration: none;
+      position: relative;
+      display: inline-block;
+    }
+
+    .logo::before {
+      content: '<';
+      margin-right: 0.3rem;
+      color: var(--accent-secondary);
+    }
+
+    .logo::after {
+      content: '/>';
+      margin-left: 0.3rem;
+      color: var(--accent-secondary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-primary);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-primary);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 8rem 0;
+      text-align: center;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.5rem 1.5rem;
+      background: rgba(0, 229, 255, 0.1);
+      border: 1px solid var(--border-color);
+      border-radius: 50px;
+      color: var(--accent-primary);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1s ease-out 0.2s both;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeInUp 1s ease-out 0.4s both;
+    }
+
+    .hero .subtitle {
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      font-weight: 300;
+      animation: fadeInUp 1s ease-out 0.6s both;
+    }
+
+    .hero .tagline {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      animation: fadeInUp 1s ease-out 0.8s both;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      animation: fadeInUp 1s ease-out 1s both;
+    }
+
+    .btn {
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: var(--bg-primary);
+      box-shadow: 0 10px 30px rgba(0, 229, 255, 0.3);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 15px 40px rgba(0, 229, 255, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--accent-primary);
+      border: 2px solid var(--accent-primary);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(0, 229, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Section Styles */
+    section {
+      padding: 6rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--accent-primary);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .section-title {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .section-description {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .skill-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .skill-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .skill-card:hover {
+      border-color: var(--accent-primary);
+      box-shadow: 0 10px 30px rgba(0, 229, 255, 0.2);
+      transform: translateY(-5px);
+    }
+
+    .skill-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .skill-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-tag {
+      padding: 0.4rem 0.8rem;
+      background: rgba(0, 229, 255, 0.1);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: var(--accent-primary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent-primary);
+      box-shadow: 0 15px 40px rgba(0, 229, 255, 0.2);
+      transform: translateY(-8px);
+    }
+
+    .project-header {
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.1), rgba(123, 47, 247, 0.1));
+    }
+
+    .project-card h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .project-type {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--accent-primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .project-body {
+      padding: 2rem;
+      flex-grow: 1;
+    }
+
+    .project-description {
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tech-badge {
+      padding: 0.3rem 0.8rem;
+      background: rgba(123, 47, 247, 0.2);
+      border: 1px solid rgba(123, 47, 247, 0.4);
+      border-radius: 4px;
+      font-size: 0.8rem;
+      color: var(--accent-secondary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .project-link {
+      padding: 0.6rem 1.2rem;
+      background: transparent;
+      border: 1px solid var(--accent-primary);
+      border-radius: 6px;
+      color: var(--accent-primary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .project-link:hover {
+      background: var(--accent-primary);
+      color: var(--bg-primary);
+    }
+
+    /* Experience Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 3rem;
+      margin-top: 3rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary));
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      transition: all 0.3s;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -3.5rem;
+      top: 2rem;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--accent-primary);
+      border: 3px solid var(--bg-primary);
+      box-shadow: 0 0 0 3px var(--accent-primary);
+    }
+
+    .timeline-item:hover {
+      border-color: var(--accent-primary);
+      transform: translateX(10px);
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .timeline-header h3 {
+      font-size: 1.5rem;
+      color: var(--text-primary);
+    }
+
+    .timeline-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--accent-primary);
+      padding: 0.3rem 1rem;
+      background: rgba(0, 229, 255, 0.1);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+    }
+
+    .company {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .timeline-description {
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .timeline-description ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 1rem;
+    }
+
+    .timeline-description li {
+      padding-left: 1.5rem;
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+
+    .timeline-description li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--accent-primary);
+      font-weight: bold;
+    }
+
+    /* Contact Section */
+    .contact {
+      text-align: center;
+      padding: 6rem 0;
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.05), rgba(123, 47, 247, 0.05));
+      border-radius: 20px;
+      margin: 4rem 0;
+    }
+
+    .contact h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact p {
+      font-size: 1.3rem;
+      color: var(--text-secondary);
+      margin-bottom: 3rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1rem 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .social-link:hover {
+      border-color: var(--accent-primary);
+      background: rgba(0, 229, 255, 0.1);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 229, 255, 0.2);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 0;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-muted);
+    }
+
+    .footer-note {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero .subtitle {
+        font-size: 1.2rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .projects-grid,
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .social-links {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .timeline {
+        padding-left: 2rem;
+      }
+
+      .timeline-item::before {
+        left: -2.5rem;
+      }
+    }
+
+    /* Scroll animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    .fade-in-delay-1 {
+      animation-delay: 0.1s;
+    }
+
+    .fade-in-delay-2 {
+      animation-delay: 0.2s;
+    }
+
+    .fade-in-delay-3 {
+      animation-delay: 0.3s;
+    }
+  </style>
 </head>
-<body class="bg-black text-customGray font-normal px-5 md:px-10">
-  <main class="mt-28">
-    <header>
-      <nav aria-label="Main Navigation" class="fixed top-0 left-0 right-0 z-50 bg-[#121212] backdrop-blur-md"
-        x-data="{ open: false, showSvgPi: true }" @click.outside="open = false; showSvgPi = true">
-        <div class="flex justify-between items-center p-5 md:px-5 md:py-7">
-          <a aria-label="Introduction" class="list-none font-bold text-customYellow text-xl"
-            data-animation="motion-safe:animate-zoomin" x-show="showSvgPi" href="#introduction">PI</a>
-          <div class="list-none hidden md:flex md:flex-row justify-between md:space-x-3">
-            <li><a class="hover:text-customYellow transition-colors duration-300" href="#projects">Projects</a></li>
-            <li><a class="hover:text-customYellow transition-colors" href="#about">About</a></li>
-            <li><a class="hover:text-customYellow transition-colors" href="#capabilities">Capabilities</a></li>
-            <li><a class="hover:text-customYellow transition-colors" href="#experience">Experience</a></li>
-            <li><a class="hover:text-customYellow transition-colors" href="#contact">Contact</a></li>
-          </div>
-          <div class="md:hidden flex items-center" x-show="showSvgPi">
-            <button aria-label="Toggle Navigation" @click="open = !open; showSvgPi = false"
-              class="md:hidden focus:outline-none transition-colors">
-              <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="27"
-                width="27" xmlns="http://www.w3.org/2000/svg">
-                <path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z">
-                </path>
-              </svg>
-            </button>
-          </div>
-        </div>
-        <ul x-show="open" class="md:hidden flex flex-col space-y-3 px-10 py-7 -mt-10">
-          <li><a class="hover:text-customYellow transition-colors" href="#projects"
-              @click="open = false; showSvgPi = true">Projects</a></li>
-          <li><a class="hover:text-customYellow transition-colors" href="#about"
-              @click="open = false; showSvgPi = true">About</a></li>
-          <li><a class="hover:text-customYellow transition-colors" href="#capabilities"
-              @click="open = false; showSvgPi = true">Capabilities</a></li>
-          <li><a class="hover:text-customYellow transition-colors" href="#experience"
-              @click="open = false; showSvgPi = true">Experience</a></li>
-          <li><a class="hover:text-customYellow transition-colors" href="#contact"
-              @click="open = false; showSvgPi = true">Contact</a></li>
-          <li>
-            <button @click="open = false; showSvgPi = true"
-              class="focus:outline-none hover:text-customYellow absolute right-0 top-0 mr-3 mt-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                  d="M18.36 6.64a1 1 0 0 0-1.41 0L12 11.59 7.05 6.64a1 1 0 0 0-1.41 1.41L10.59 13l-4.95 4.95a1 1 0 1 0 1.41 1.41L12 14.41l4.95 4.95a1 1 0 0 0 1.41-1.41L13.41 13l4.95-4.95a1 1 0 0 0 0-1.41z" />
-              </svg>
-            </button>
-          </li>
+<body>
+  <div class="bg-grid"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">PRAISE</a>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-    </header>
-    <section id="introduction">
-      <div class="grid md:grid-cols-2 md:gap-12 items-center">
-        <div data-animation="motion-safe:animate-fadeindown">
-          <h1 class="uppercase text-5xl">hi, <span class="text-customYellow">i am</span></h1>
-          <h1 class="text-customYellow uppercase text-5xl">Praise Idowu.</h1>
-          <p id="typewriter" class="mt-2"></p>
-        </div>
-        <div class="shadow-lg mx-auto" data-animation="motion-safe:animate-fadeinup">
-          <img class="w-72 h-72 object-cover mt-2" src="/assets/images/praise.png" alt="An anime with a pink cat">
-        </div>
-      </div>
-    </section>
-    <div class="border-b border-borderColor"></div>
-    <section id="projects">
-      <header>
-        <h2 class="uppercase font-bold text-2xl my-10">Featured Projects</h2>
-      </header>
-      <div class="grid grid-cols-1 md:grid-cols-2 md:gap-5 mb-5 items-center">
-        <div class="bg-darkGray relative py-20 px-10">
-          <span class="font-medium bg-black rounded-full absolute mt-2 px-4 py-2 top-0 left-2 ">Devsearch</span>
-          <img src="/assets/images/devsearch-admin-login.png" alt="An image of Project 1">
-        </div>
-        <div class="py-20 md:px-10 self-center">
-          <h2 class="font-medium mb-2">DevSearch</h2>
-          <p>A developer networking platform where users can create profiles, showcase skills, and connect with
-            other
-            professionals. I built the backend, implementing Django MVT, PostgreSQL for database management, and
-            Docker
-            for containerization.</p>
-
-          <div id="technologies" class="my-4 lg:space-x-2">
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">Django</span>
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">PostgreSQL</span>
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">Docker</span>
-          </div>
-          <div class="uppercase text-customYellow">
-            <!-- <span>Live Demo &#8599;</span> -->
-            <span><a href="https://github.com/praise002/Devsearch-django-mvt" target="_blank" rel="noopener noreferrer"
-                class="hover:text-customGray transition-colors">See on
-                Github <i class="fa-brands fa-github"></i></a></span>
-          </div>
-        </div>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 md:gap-5 mb-5 items-center">
-        <div class="bg-darkGray relative py-20 px-10">
-          <span class="font-medium bg-black rounded-full absolute mt-2 px-4 py-2 top-0 left-2 ">Devsearch</span>
-          <img src="/assets/images/devsearch-api.png" alt="An image of project 2">
-        </div>
-        <div class="py-20 md:px-10 self-center">
-          <h2 class="font-medium mb-2">DevSearch API</h2>
-          <p>A developer networking platform where users can create profiles, showcase skills, and connect with
-            other
-            professionals. I built the backend, implementing Django Rest Framework, PostgreSQL for database
-            management, and Docker
-            for containerization.</p>
-
-          <div id="technologies" class="my-4 lg:space-x-2">
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">Django Rest
-              Framework</span>
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">PostgreSQL</span>
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">Docker</span>
-          </div>
-          <div class="uppercase text-customYellow">
-            <span><a href="https://infinite-beach-61393-2eb111cc1308.herokuapp.com/" target="_blank"
-                rel="noopener noreferrer">Live Demo &#8599;</a>
-            </span>
-            <span><a href="https://github.com/praise002/Devsearch-drf" target="_blank" rel="noopener noreferrer"
-                class="hover:text-customGray transition-colors">See on Github <i
-                  class="fa-brands fa-github"></i></a></span>
-          </div>
-        </div>
-
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 md:gap-5 mb-5 items-center">
-        <div class="bg-darkGray relative py-20 px-10">
-          <span class="font-medium bg-black rounded-full absolute mt-2 px-4 py-2 top-0 left-2 ">Clothing Store</span>
-          <img src="/assets/images/sixteen.png" alt="An image of project 2">
-        </div>
-        <div class="py-20 md:px-10 self-center">
-          <h2 class="font-medium mb-2">Clothing Store</h2>
-          <p>Developed a full-stack web app for a clothing store with features including user authentication, product
-            management, shopping cart, wishlist, order management, coupons, user profiles, reviews/ratings, and an admin
-            dashboard.</p>
-
-          <div id="technologies" class="my-4 lg:space-x-2">
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">Django</span>
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">PostgreSQL</span>
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">Docker</span>
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">Meilisearch</span>
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">Bootstrap</span>
-          </div>
-          <div class="uppercase text-customYellow">
-            <!-- <span>Live Demo &#8599;</span> -->
-            <span><a href="https://github.com/praise002/Clothing-store_v1" target="_blank" rel="noopener noreferrer"
-                class="hover:text-customGray transition-colors">See on Github <i
-                  class="fa-brands fa-github"></i></a></span>
-          </div>
-        </div>
-
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 md:gap-5 mb-5 items-center">
-        <div class="bg-darkGray relative py-20 px-10">
-          <span class="font-medium bg-black rounded-full absolute mt-2 px-4 py-2 top-0 left-2 ">Clothing Store</span>
-          <img src="/assets/images/clothing-store.png" alt="An image of project 2">
-        </div>
-        <div class="py-20 md:px-10 self-center">
-          <h2 class="font-medium mb-2">Clothing Store API</h2>
-          <p>Designed and built a RESTful API for a full-featured clothing store, supporting authentication, product
-            management, orders, discounts, and asynchronous tasks with Celery.</p>
-
-          <div id="technologies" class="my-4 lg:space-x-2">
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">Django Rest
-              Framework</span>
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">PostgreSQL</span>
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">Docker</span>
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">Celery</span>
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">Redis</span>
-          </div>
-          <div class="uppercase text-customYellow">
-            <span><a href="https://clothingstoredrf-production.up.railway.app/" target="_blank"
-                rel="noopener noreferrer">Live Demo &#8599;</a>
-            </span>
-            <span><a href="https://github.com/praise002/clothing_store_drf" target="_blank" rel="noopener noreferrer"
-                class="hover:text-customGray transition-colors">See on Github <i
-                  class="fa-brands fa-github"></i></a></span>
-          </div>
-        </div>
-
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 md:gap-5 mb-5 items-center">
-        <div class="bg-darkGray relative py-20 px-10">
-          <span class="font-medium bg-black rounded-full absolute mt-2 px-4 py-2 top-0 left-2">JAFF</span>
-          <img src="/assets/images/jaff.png" alt="An image of project 2">
-        </div>
-        <div class="py-20 md:px-10 self-center">
-          <h2 class="font-medium mb-2">JAFF Foundation</h2>
-          <p>Developed a donation platform with a React frontend and Django REST Framework backend, enabling secure
-            payments, donor management, and global donation tracking.</p>
-
-          <div id="technologies" class="my-4 lg:space-x-2">
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">Django Rest
-              Framework</span>
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">PostgreSQL</span>
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">Docker</span>
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">React</span>
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">Vercel</span>
-          </div>
-          <div class="uppercase text-customYellow">
-            <span><a href="https://jff-foundation.vercel.app/" target="_blank" rel="noopener noreferrer">Live Demo
-                &#8599;</a></span>
-          </div>
-        </div>
-
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 md:gap-5 mb-5 items-center">
-        <div class="bg-darkGray relative py-20 px-10">
-          <span class="font-medium bg-black rounded-full absolute mt-2 px-4 py-2 top-0 left-2 ">Tech HIve</span>
-          <img src="/assets/images/tech-hive.png" alt="An image of project 3">
-        </div>
-        <div class="py-20 md:px-10 self-center">
-          <h2 class="font-medium mb-2">Tech Hive</h2>
-          <p>Tech Hive is a modern, collaborative platform designed for the tech community, offering features such as
-            article writing, job listings, resource sharing, and tool discovery. Built with Django and React, it
-            provides robust APIs, real-time collaboration, and a clean, responsive user experience for tech enthusiasts
-            and professionals.</p>
-
-          <div id="technologies" class="my-4 lg:space-x-2">
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">Tailwind CSS</span>
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">React</span>
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">Django Rest FRamework</span>
-          </div>
-          <div class="uppercase text-customYellow space-x-2">
-            <span><a class="hover:text-customGray transition-colors" href="https://tech-hive-react.vercel.app/">Live
-                Demo &#8599;</a></span>
-            <span><a href="https://github.com/praise002/tech-hive" target="_blank" rel="noopener noreferrer"
-                class="hover:text-customGray transition-colors">See on Github <i
-                  class="fa-brands fa-github"></i></a></span>
-          </div>
-        </div>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 md:gap-5 items-center">
-        <div class="bg-darkGray relative py-20 px-10">
-          <span class="font-medium bg-black rounded-full absolute mt-2 px-4 py-2 top-0 left-2 ">LearnLink</span>
-          <img src="/assets/images/learnlink.jpg" alt="An image of project 2">
-        </div>
-        <div class="py-20 md:px-10 self-center">
-          <h2 class="font-medium mb-2">LearnLink</h2>
-          <p>LearnLink is a centralized repository of curated learning resources across various categories, designed
-            to help both beginners and professionals in their tech journeys. Our goal is to make learning accessible,
-            structured, and easy to navigate.
-            I and my teammates contributed into this project and made it open-source in the spirit of Hertoberfest
-            and Hacktoberfest.</p>
-
-          <div id="technologies" class="my-4 lg:space-x-2">
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">Markdown</span>
-            <span class="font-medium bg-darkGray rounded-full px-4 py-2 mb-2 inline-block">GitHub</span>
-          </div>
-          <div class="uppercase text-customYellow">
-            <!-- <span>Live Demo &#8599;</span> -->
-            <span><a href="https://github.com/SCA-OAU/LearnLink" target="_blank" rel="noopener noreferrer"
-                class="hover:text-customGray transition-colors">See on Github <i
-                  class="fa-brands fa-github"></i></a></span>
-          </div>
-        </div>
-      </div>
-      <div class="border-b border-borderColor"></div>
-    </section>
-    <section id="about" class="grid grid-cols-1 md:grid-cols-2 md:gap-5 py-20">
-      <h2 class="font-medium uppercase text-3xl mb-5 md:mb-0">About Me</h2>
-      <div>
-        <p class="font-medium text-2xl mb-2">
-          I am a full stack software engineer.
-        </p>
-        <div class="my-4 flex flex-col md:flex-row gap-2">
-          <p><a href="#contact"
-              class="inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 text-gray-800 h-10 px-4 py-2 bg-yellow-500 hover:bg-yellow-600">Hire
-              Me</a></p>
-          <!-- <p><a href="#contact"
-              class="inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 text-gray-800 h-10 px-4 py-2 bg-yellow-500 hover:bg-yellow-600">Work
-              with my
-              Startup</a></p> -->
-          <p><a href="#contact"
-              class="inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 text-gray-800 h-10 px-4 py-2 bg-yellow-500 hover:bg-yellow-600">Invite
-              me to
-              speak</a></p>
-        </div>
-        <p>
-          I help founders go from idea to launch, build backend systems, and tell technical stories that convert.
-        </p>
-      </div>
-
-    </section>
-    <div class="border-b border-borderColor"></div>
-    <section id="capabilities" class="pb-10">
-      <h2 class="font-medium uppercase text-3xl my-10">My Capabilities
-      </h2>
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="p-6 bg-gray-900 space-y-4 rounded-lg">
-          <div class="text-customYellow">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="lucide lucide-code w-8 h-8">
-              <polyline points="16 18 22 12 16 6"></polyline>
-              <polyline points="8 6 2 12 8 18"></polyline>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold">
-            Frontend Development
-          </h3>
-          <p class="text-gray-400">
-            Creating responsive and interactive user interfaces with modern frameworks.
-          </p>
-        </div>
-        <div class="p-6 bg-gray-900 space-y-4 rounded-lg">
-          <div class="text-customYellow">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="lucide lucide-terminal w-8 h-8">
-              <polyline points="4 17 10 11 4 5"></polyline>
-              <line x1="12" x2="20" y1="19" y2="19"></line>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold">
-            Backend Development
-          </h3>
-          <p class="text-gray-400">
-            Building robust server-side applications and APIs.
-          </p>
-        </div>
-        <div class="p-6 bg-gray-900 space-y-4 rounded-lg">
-          <div class="text-customYellow">
-            <svg class="w-12 h-12 text-customYellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 2a10 10 0 00-3.516 19.422c.276.05.375-.12.375-.266 0-.132-.005-.482-.007-.946-1.53.334-1.852-.738-1.852-.738-.25-.635-.61-.804-.61-.804-.498-.34.038-.333.038-.333.55.038.84.566.84.566.49.84 1.285.598 1.6.458.05-.355.192-.598.35-.736-1.222-.14-2.506-.611-2.506-2.722 0-.602.215-1.095.566-1.48-.057-.14-.245-.704.054-1.466 0 0 .46-.148 1.5.566a5.23 5.23 0 011.366-.184c.464 0 .93.062 1.366.184 1.04-.714 1.5-.566 1.5-.566.3.762.112 1.326.054 1.466.352.385.566.878.566 1.48 0 2.118-1.288 2.58-2.516 2.718.198.172.374.51.374 1.028 0 .742-.007 1.34-.007 1.52 0 .148.1.318.378.266A10 10 0 0012 2z">
-              </path>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold">
-            Large Language Models
-          </h3>
-          <p class="text-gray-400">
-            Expertise in Large Language Models, including training, fine-tuning, and deploying models for various
-            applications.
-          </p>
-        </div>
-        <div class="p-6 bg-gray-900 space-y-4 rounded-lg">
-          <div class="text-customYellow">
-            <svg class="w-12 h-12 text-customYellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 20h9m-9 0a9 9 0 01-9-9 9 9 0 019-9 9 9 0 019 9 9 9 0 01-9 9zm0 0v-9"></path>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold">
-            Technical Writing
-          </h3>
-          <p class="text-gray-400">
-            Proficient in creating clear, concise, and comprehensive technical documentation and tutorials.
-          </p>
-        </div>
-      </div>
-    </section>
-    <div class="border-b border-borderColor"></div>
-    <section id="experience" class="py-10">
-      <h2 class="font-medium uppercase text-3xl my-10">My Experience</h2>
-      <div class="space-y-8">
-        <div class="grid md:grid-cols-[200px_1fr] gap-8 p-6 rounded-lg bg-gray-900">
-          <div class="font-medium text-customYellow">March 2024 - June 2024</div>
-          <div class="space-y-4">
-            <h3 class="text-xl font-bold">Teaching Assistant</h3>
-            <p class="text-gray-400">Kibo School of Technology</p>
-            <p>Served as a Teaching Assistant for the Trykibo Python course, where I assisted students in
-              understanding
-              core Python concepts, provided guidance on coding assignments, and facilitated interactive coding
-              sessions
-              to enhance learning outcomes.</p>
-          </div>
-        </div>
-        <div class="grid md:grid-cols-[200px_1fr] gap-8 p-6 rounded-lg bg-gray-900">
-          <div class="font-medium text-customYellow">June 2024 - August 2024</div>
-          <div class="space-y-4">
-            <h3 class="text-xl font-bold">LLM Intern</h3>
-            <p class="text-gray-400">SeqHub Analytics LLC</p>
-            <p>During my LLM internship, my team and I developed a Sickle Cell chatbot using LangChain and OpenAI. We
-              conducted extensive research by reading relevant papers and received valuable guidance and mentorship
-              throughout the project.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <div class="border-b border-borderColor"></div>
-  </main>
-  <section id="contact" class="py-20 bg-black/50">
-    <div class="container mx-auto">
-      <h2 class="uppercase text-3xl font-bold mb-12">Let's connect</h2>
-      <div class="max-w-2xl mx-auto">
-        <form id="contact-form" class="space-y-6" action="https://formspree.io/f/mknendol" method="post">
-          <div class="grid md:grid-cols-2 gap-6">
-            <input required
-              class="h-10 w-full rounded-md border px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-gray-900 border-gray-800"
-              placeholder="Name" name="Name" type="text">
-            <input required
-              class="h-10 w-full rounded-md border px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-gray-900 border-gray-800"
-              placeholder="Email" name="Email" type="email">
-          </div>
-          <input required
-            class="h-10 w-full rounded-md border px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-gray-900 border-gray-800"
-            placeholder="Subject" name="Subject" type="subject">
-          <textarea required
-            class="w-full rounded-md border px-3 py-2 text-sm placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-gray-900 border-gray-800 min-h-[150px]"
-            placeholder="Message" name="Message"></textarea>
-
-          <button id="submit-btn"
-            class="w-full inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 text-gray-800 h-10 px-4 py-2 bg-yellow-500 hover:bg-yellow-600"
-            type="submit">Send Message</button>
-          <p id="my-form-status"></p>
-        </form>
-
-        <div class="flex justify-center gap-6 mt-5">
-          <a target="_blank" rel="noopener noreferrer" href="https://github.com/praise002"
-            class="text-gray-400 hover:text-customYellow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" class="lucide lucide-github w-6 h-6">
-              <path
-                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4">
-              </path>
-              <path d="M9 18c-4.51 2-5-2-7-2"></path>
-            </svg></a>
-
-          <a target="_blank" rel="noopener noreferrer"
-            href="https://www.linkedin.com/in/praise-ifeoluwa-idowu-back-end-developer-django/"
-            class="text-gray-400 hover:text-customYellow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" class="lucide lucide-linkedin w-6 h-6">
-              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-              <rect width="4" height="12" x="2" y="9"></rect>
-              <circle cx="4" cy="4" r="2"></circle>
-            </svg></a>
-          <a target="_blank" rel="noopener noreferrer" href="https://x.com/PraiseID3?t=R9aSeyVxpWblkDs9QAIXZw&s=09"
-            class="text-gray-400 hover:text-customYellow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-              fill="currentColor" class="bi bi-twitter-x w-6 h-6" viewBox="0 0 16 16">
-              <path
-                d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
-            </svg></a>
-        </div>
-      </div>
     </div>
-  </section>
+  </header>
 
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-badge">BACKEND & AI ENGINEER</div>
+        <h1>Idowu Praise</h1>
+        <p class="subtitle">APIs, AI Automation - Workflow Orchestration | Business Process Automation</p>
+        <p class="tagline">Building production-focused AI systems that solve real business problems through intelligent
+          automation and scalable architectures.</p>
+        <div class="cta-buttons">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
+          <a href="#contact" class="btn btn-secondary">Let's Connect</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">// ABOUT ME</div>
+          <h2 class="section-title">AI Engineer with Production Focus</h2>
+          <p class="section-description">
+            Specialized in combining backend engineering with Large Language Models, retrieval systems, and workflow
+            automation to create scalable, reliable AI applications. From understanding business problems to building,
+            integrating, and deploying intelligent systems.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">// TECHNICAL EXPERTISE</div>
+          <h2 class="section-title">What I Build With</h2>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-card fade-in">
+            <div class="skill-icon">🤖</div>
+            <h3>LLM & GenAI</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">OpenAI</span>
+              <span class="skill-tag">Gemini</span>
+              <span class="skill-tag">Claude</span>
+              <span class="skill-tag">LangChain</span>
+              <span class="skill-tag">LangGraph</span>
+              <span class="skill-tag">RAG</span>
+              <span class="skill-tag">Fine-Tuning</span>
+              <span class="skill-tag">Hugging Face</span>
+            </div>
+          </div>
+
+          <div class="skill-card fade-in fade-in-delay-1">
+            <div class="skill-icon">🗄️</div>
+            <h3>Data & Retrieval</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">FAISS</span>
+              <span class="skill-tag">Pinecone</span>
+              <span class="skill-tag">Chroma</span>
+              <span class="skill-tag">PostgreSQL</span>
+              <span class="skill-tag">Redis</span>
+              <span class="skill-tag">Embeddings</span>
+              <span class="skill-tag">Semantic Search</span>
+            </div>
+          </div>
+
+          <div class="skill-card fade-in fade-in-delay-2">
+            <div class="skill-icon">⚙️</div>
+            <h3>Backend & APIs</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">FastAPI</span>
+              <span class="skill-tag">Django</span>
+              <span class="skill-tag">REST APIs</span>
+              <span class="skill-tag">Microservices</span>
+              <span class="skill-tag">Event-Driven</span>
+            </div>
+          </div>
+
+          <div class="skill-card fade-in fade-in-delay-3">
+            <div class="skill-icon">🔄</div>
+            <h3>Automation & Orchestration</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">n8n</span>
+              <span class="skill-tag">Make</span>
+              <span class="skill-tag">Workflow Systems</span>
+              <span class="skill-tag">AI Agents</span>
+              <span class="skill-tag">Agentic Workflows</span>
+            </div>
+          </div>
+
+          <div class="skill-card fade-in">
+            <div class="skill-icon">☁️</div>
+            <h3>Deployment & Infra</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Docker</span>
+              <span class="skill-tag">AWS</span>
+              <span class="skill-tag">Azure</span>
+              <span class="skill-tag">DigitalOcean</span>
+              <span class="skill-tag">Railway</span>
+              <span class="skill-tag">Git/GitHub</span>
+              <span class="skill-tag">CI/CD</span>
+              <span class="skill-tag">Monitoring</span>
+            </div>
+          </div>
+
+          <div class="skill-card fade-in fade-in-delay-1">
+            <div class="skill-icon">📊</div>
+            <h3>ML & Monitoring</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">LangSmith</span>
+              <span class="skill-tag">Prometheus</span>
+              <span class="skill-tag">Grafana</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">// FEATURED WORK</div>
+          <h2 class="section-title">Projects</h2>
+          <p class="section-description">
+            Production-ready AI systems combining LLMs, automation, and backend engineering to deliver measurable
+            business impact.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-header">
+              <h3>Intelligent Customer Support Ticker Router & Resolver</h3>
+              <div class="project-type">Intelligent Ticket System</div>
+            </div>
+            <div class="project-body">
+              <p class="project-description">
+                An AI agent that analyzes incoming support tickets, extracts key information, checks knowledge bases,
+                and either resolves the ticket automatically or routes it to the appropriate specialist with context.
+              </p>
+              <div class="project-tech">
+                <span class="tech-badge">LangChain</span>
+                <span class="tech-badge">LangGraph</span>
+                <span class="tech-badge">ChromaDB/Pinecone</span>
+                <span class="tech-badge">PostgreSQL</span>
+                <span class="tech-badge">LLM APIs</span>
+                <span class="tech-badge">FastAPI</span>
+                <span class="tech-badge">Zendesk</span>
+                <span class="tech-badge">Slack</span>
+                <span class="tech-badge">React Dashboard</span>
+                <span class="tech-badge">n8n</span>
+                <!-- TODO: ADD THE N8N ONE TO THE GITHUB REPO WHEN I BUILD IT -->
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/praise002/Intelligent-Customer-Support-Ticker-Router-Resolver"
+                  class="project-link" target="_blank">GitHub →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-header">
+              <h3>AI-Powered Proposal Automation System</h3>
+              <div class="project-type">AI Automation Workflow</div>
+            </div>
+            <div class="project-body">
+              <p class="project-description">
+                An end-to-end automation system that transforms raw sales form inputs into polished, client-ready
+                business proposals using AI-powered content generation and workflow automation. The solution integrates
+                n8n, Google Drive, Airtable, and Gmail to create, enhance, validate, and deliver proposals automatically
+                within minutes.
+              </p>
+              <div class="project-tech">
+                <span class="tech-badge">n8n</span>
+                <span class="tech-badge">Google Docs</span>
+                <span class="tech-badge">Groq AI</span>
+                <span class="tech-badge">Airtable</span>
+              </div>
+              <div class="project-links">
+                <a href="https://voracious-square-f29.notion.site/AI-Powered-Proposal-Automation-System-3099b8b745508146ac4fc88fe420ba7e"
+                  class="project-link" target="_blank">View Details →</a>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="project-card">
+            <div class="project-header">
+              <h3>Lead Generation & Outreach System</h3>
+              <div class="project-type">Automation Pipeline</div>
+            </div>
+            <div class="project-body">
+              <p class="project-description">
+                Automated B2B lead discovery and cold outreach system using n8n, Apify for Google Maps scraping,
+                Hunter.io for email finding, Groq/LLaMA for personalized email generation, and automated Gmail sending
+                with Google Sheets tracking.
+              </p>
+              <div class="project-tech">
+                <span class="tech-badge">n8n</span>
+                <span class="tech-badge">Apify</span>
+                <span class="tech-badge">LLaMA</span>
+                <span class="tech-badge">Hunter.io</span>
+                <span class="tech-badge">Gmail API</span>
+              </div>
+              <div class="project-links">
+                <a href="https://voracious-square-f29.notion.site/Lead-Generation-and-Outreach-System-3099b8b74550813b8bd0db8a4b731c2c"
+                  class="project-link" target="_blank">View Details →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-header">
+              <h3>HR Onboarding Automation</h3>
+              <div class="project-type">AI Onboarding System</div>
+            </div>
+            <div class="project-body">
+              <p class="project-description">
+                An automation that streamlines employee onboarding. When a new hire fills out a form, the system
+                automatically generates their offer letter, sends it via email, notifies the manager, and creates
+                calendar events for their start date and orientation. All records are neatly tracked in Google Sheets.
+              </p>
+              <div class="project-tech">
+                <span class="tech-badge">Make</span>
+                <span class="tech-badge">Google Sheets</span>
+                <span class="tech-badge">Gmail</span>
+              </div>
+              <div class="project-links">
+                <a href="https://voracious-square-f29.notion.site/HR-Onboarding-Automation-3199b8b7455080aba3b8e6099415c708"
+                  class="project-link" target="_blank">View Details →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-header">
+              <h3>Content Generation and Publishing automation</h3>
+              <div class="project-type">Content Generation System</div>
+            </div>
+            <div class="project-body">
+              <p class="project-description">
+                An end-to-end content generation and publishing automation system for a marketing agency to manage
+                the full content lifecycle, from ideation to publication, across multiple platforms. The system
+                integrates Telegram, n8n, Google Docs, Airtable, and major social media APIs (LinkedIn, X/Twitter, and
+                Gmail) to automatically generate, format, and publish SEO-optimized content with minimal manual
+                intervention.
+              </p>
+              <div class="project-tech">
+                <span class="tech-badge">n8n</span>
+                <span class="tech-badge">Airtable</span>
+                <span class="tech-badge">Telegram</span>
+                <span class="tech-badge">LLM API</span>
+              </div>
+              <div class="project-links">
+                <a href="https://voracious-square-f29.notion.site/Content-Generation-and-Publishing-automation-3099b8b745508126829bc4c271cffb4a"
+                  class="project-link" target="_blank">View Details →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-header">
+              <h3>Tech Hive Community Hub</h3>
+              <div class="project-type">Scalable Backend Platform</div>
+            </div>
+            <div class="project-body">
+              <p class="project-description">
+                Benchmarked and optimized Django REST API platform with asynchronous processing using Celery, Redis
+                caching for performance, Docker containerization, and comprehensive API testing protocols.
+              </p>
+              <div class="project-tech">
+                <span class="tech-badge">Django REST</span>
+                <span class="tech-badge">PostgreSQL</span>
+                <span class="tech-badge">Celery</span>
+                <span class="tech-badge">Redis</span>
+                <span class="tech-badge">Docker</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/praise002/tech-hive" class="project-link">GitHub →</a>
+                <a href="https://tech-hive-production.up.railway.app/" class="project-link">Live Demo →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-header">
+              <h3>Clothing Store</h3>
+              <div class="project-type">Scalable Backend Platform</div>
+            </div>
+            <div class="project-body">
+              <p class="project-description">
+                Developed a full-stack web app for a clothing store with features including user authentication, product
+                management, shopping cart, wishlist, order management, coupons, user profiles, reviews/ratings, and an
+                admin
+                dashboard.
+              </p>
+              <div class="project-tech">
+                <span class="tech-badge">Django REST</span>
+                <span class="tech-badge">PostgreSQL</span>
+                <span class="tech-badge">Celery</span>
+                <span class="tech-badge">Redis</span>
+                <span class="tech-badge">Docker</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/praise002/clothing_store_drf" class="project-link">GitHub →</a>
+                <a href="https://clothingstoredrf-production.up.railway.app/" class="project-link">Live Demo →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">// PROFESSIONAL JOURNEY</div>
+          <h2 class="section-title">Experience</h2>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <div>
+                <h3>Freelance Full-stack Developer</h3>
+                <p class="company">JAFF Foundation (Nonprofit Organization) | Remote</p>
+              </div>
+              <div class="timeline-date">2026</div>
+            </div>
+            <div class="timeline-description">
+              <ul>
+                <li>Evaluated and optimized full-stack application performance, reducing request latency by ~70% at peak
+                  traffic through systematic benchmarking and analysis</li>
+                <li>Designed and implemented RESTful APIs with comprehensive testing protocols using Postman, ensuring
+                  reliability and data integrity</li>
+                <li>Conducted thorough quality assessments of payment gateway integration (Paystack), identifying and
+                  resolving edge cases to ensure secure transaction workflows</li>
+                <li>Provided detailed technical documentation and structured feedback for platform improvements</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <div>
+                <h3>Teaching Assistant</h3>
+                <p class="company">Kibo School of Technology</p>
+              </div>
+              <div class="timeline-date">Previous</div>
+            </div>
+            <div class="timeline-description">
+              <ul>
+                <li>Mentored students in software development fundamentals and best practices</li>
+                <li>Provided technical guidance on backend development, APIs, and system design</li>
+                <li>Facilitated learning in modern development workflows and tooling</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <div>
+                <h3>Bachelor of Technology in Applied Geophysics</h3>
+                <p class="company">Federal University of Technology, Akure, Nigeria</p>
+              </div>
+              <div class="timeline-date">2021 - 2025</div>
+            </div>
+            <div class="timeline-description">
+              <p>Strong foundation in analytical thinking, data analysis, and problem-solving applied to AI and software
+                engineering.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact">
+          <div class="section-tag">// LET'S BUILD SOMETHING</div>
+          <h2>Ready to Work Together?</h2>
+          <p>Open for AI engineering opportunities, automation projects, and technical collaborations.</p>
+
+          <div class="cta-buttons">
+            <a href="mailto:ifeoluwapraise02@gmail.com" class="btn btn-primary">Send Email</a>
+            <a href="https://docs.google.com/document/d/1out7Ig0aFvVY2XBiz-twEjh6zFLWt18bVTRushtcQUw/edit?usp=sharing"
+              target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Download CV</a>
+          </div>
+
+
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/praise-ifeoluwa-idowu-back-end-developer-django/" class="social-link"
+              target="_blank">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+              </svg>
+              LinkedIn
+            </a>
+            <a href="https://github.com/praise002" class="social-link" target="_blank">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+              </svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p class="footer-note" id="copyright-year">© 2026 Idowu Praise. Built with Love.</p>
+      <p class="footer-note" style="margin-top: 0.5rem;">⚡ Building reliable, production-ready AI systems that create
+        measurable impact.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe all fade-in elements
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Add active state to navigation on scroll
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-links a');
+
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (scrollY >= (sectionTop - 200)) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.style.color = 'var(--text-secondary)';
+        if (link.getAttribute('href').slice(1) === current) {
+          link.style.color = 'var(--accent-primary)';
+        }
+      });
+    });
+
+    // Set dynamic copyright year
+    const copyrightYear = document.getElementById('copyright-year');
+    if (copyrightYear) {
+      copyrightYear.textContent = `© ${new Date().getFullYear()} Idowu Praise. Built with 💖.`;
+    }
+  </script>
 </body>
-
 </html>
